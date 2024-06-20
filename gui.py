@@ -9,7 +9,7 @@ def fetch_data(ticker, start_date, end_date):
 	try:
 		data = yf.download(ticker, start_date, end_date)
 		data = data.reset_index()
-		data.to_excel("stock_data.xlsx", index=False)
+		data.to_excel("stock_data.xlsx")
 		return data
 	except:
 		print("error fetching data")
@@ -31,7 +31,7 @@ data_table = ttk.Treeview(root)
 data_table.pack(pady=20, expand=True, fill= tk.BOTH)
 
 def load_data():
-	file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx, *.xls"), ("CSV files", "*.csv")])
+	file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx *.xls"), ("CSV files", "*.csv")])
 	if file_path:
 		if file_path.endswith(".csv"):
 			df = pd.read_csv(file_path)
